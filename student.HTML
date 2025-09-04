@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compact Student ID Card</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #f2f2f2;
+    margin: 0;
+    padding: 20px;
+}
+h2 { text-align: center; margin-bottom: 20px; }
+
+form {
+    max-width: 500px;
+    margin: auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+label { font-weight: bold; display: block; margin-top: 10px; }
+input { width: 100%; padding: 8px; margin-top: 4px; border: 1px solid #ccc; border-radius: 5px; }
+button {
+    margin-top: 15px;
+    padding: 10px;
+    width: 100%;
+    background: orange;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#idCard {
+    width: 350px;
+    background: #fff;
+    margin: 30px auto;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    overflow: hidden;
+    display: none;
+    position: relative;
+    padding-bottom: 20px;
+}
+.header {
+    background: orange;
+    color: white;
+    padding: 12px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    position: relative;
+}
+.photo-principal {
+    display: flex;
+    align-items: center;
+    padding: 5px 15px;
+}
+.photo-principal img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: 3px solid red;
+    object-fit: cover;
+}
+.details {
+    padding: 8px 15px;
+    font-size: 14px;
+    background: yellow;
+    color: black;
+}
+.details p { margin: 4px 0; }
+.school-info {
+    padding: 3px 15px;
+    font-size: 12px;
+    color: white;
+    font-style: italic;
+    background: red; /* बैकग्राउंड रेड किया */
+}
+.footer {
+    background: orange;
+    color: white;
+    text-align: center;
+    padding: 6px;
+    font-size: 12px;
+}
+
+/* Principal Phone को top-right corner में shift किया */
+.principal-corner {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+}
+
+#printBtn {
+    display: none;
+    margin: auto;
+    margin-top: 15px;
+    background: green;
+    color: #fff;
+}
+
+@media print {
+    form, #printBtn { display: none; }
+    #idCard { display: block; margin: 0; }
+    body { background: white; }
+}
+</style>
+</head>
+<body>
+
+<h2>Compact Student ID Card Generator</h2>
+
+<form id="idForm">
+  <label>School Name</label>
+  <input type="text" id="schoolName" placeholder="Enter School Name" required>
+
+  <label>Principal Phone Number</label>
+  <input type="text" id="principalPhone" placeholder="Enter Principal's Phone Number" required>
+
+  <label>Student Name</label>
+  <input type="text" id="stuName" required>
+
+  <label>Class & Section</label>
+  <input type="text" id="stuClass" required>
+
+  <label>Roll No</label>
+  <input type="text" id="stuRoll" required>
+
+  <label>Father's Name</label>
+  <input type="text" id="stuFather" required>
+
+  <label>Date of Birth</label>
+  <input type="date" id="stuDob" required>
+
+  <label>Blood Group</label>
+  <input type="text" id="stuBlood" required>
+
+  <label>Contact No</label>
+  <input type="text" id="stuContact" required>
+
+  <label>Expiry Date</label>
+  <input type="date" id="stuExp" required>
+
+  <label>Upload Photo</label>
+  <input type="file" id="stuPhoto" accept="image/*">
+
+  <button type="button" onclick="generateCard()">Apply</button>
+</form>
+
+<div id="idCard">
+  <div class="header">
+    <span id="cardSchool">SCHOOL NAME</span>
+    <div class="principal-corner">Principal: <span id="cardPrincipal"></span></div>
+  </div>
+
+  <div class="photo-principal">
+    <img id="cardPhoto" src="" alt="Student Photo">
+  </div>
+
+  <div class="details">
+    <p><b>Name:</b> <span id="cardName"></span></p>
+    <p><b>Class:</b> <span id="cardClass"></span></p>
+    <p><b>Roll:</b> <span id="cardRoll"></span></p>
+    <p><b>Father:</b> <span id="cardFather"></span></p>
+    <p><b>DOB:</b> <span id="cardDob"></span></p>
+    <p><b>Blood:</b> <span id="cardBlood"></span></p>
+    <p><b>Contact:</b> <span id="cardContact"></span></p>
+    <p><b>Valid Till:</b> <span id="cardExp"></span></p>
+  </div>
+
+  <div class="school-info">
+    <p>Our school is committed to excellence in education and nurturing future leaders.</p>
+  </div>
+
+  <div class="footer">
+    SCHOOL IDENTITY CARD
+  </div>
+</div>
+
+<button id="printBtn" onclick="window.print()">Print ID Card</button>
+
+<script>
+function formatDate(dateStr){
+  if(!dateStr) return "";
+  const options = { year: 'numeric', month: 'short', day: 'numeric' };
+  return new Date(dateStr).toLocaleDateString('en-GB', options);
+}
+
+function generateCard() {
+  document.getElementById("cardSchool").innerText = document.getElementById("schoolName").value;
+  document.getElementById("cardPrincipal").innerText = document.getElementById("principalPhone").value;
+  document.getElementById("cardName").innerText = document.getElementById("stuName").value;
+  document.getElementById("cardClass").innerText = document.getElementById("stuClass").value;
+  document.getElementById("cardRoll").innerText = document.getElementById("stuRoll").value;
+  document.getElementById("cardFather").innerText = document.getElementById("stuFather").value;
+  document.getElementById("cardDob").innerText = formatDate(document.getElementById("stuDob").value);
+  document.getElementById("cardBlood").innerText = document.getElementById("stuBlood").value;
+  document.getElementById("cardContact").innerText = document.getElementById("stuContact").value;
+  document.getElementById("cardExp").innerText = formatDate(document.getElementById("stuExp").value);
+
+  const file = document.getElementById("stuPhoto").files[0];
+  if(file){
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      document.getElementById("cardPhoto").src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  document.getElementById("idCard").style.display = "block";
+  document.getElementById("printBtn").style.display = "block";
+}
+</script>
+
+</body>
+</html>
