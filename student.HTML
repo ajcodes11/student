@@ -24,7 +24,7 @@ form {
 label { font-weight: bold; display: block; margin-top: 10px; }
 input { width: 100%; padding: 8px; margin-top: 4px; border: 1px solid #ccc; border-radius: 5px; }
 button {
-    margin-top: 15px;
+    margin-top: 10px;
     padding: 10px;
     width: 100%;
     background: orange;
@@ -54,14 +54,13 @@ button {
     font-size: 18px;
     position: relative;
 }
-.principal-corner {
-    display: block;
-    margin-top: 5px;
+.school-address {
     font-size: 12px;
-    font-weight: bold;
-    color: white;
+    color: #fff;
+    margin-top: 4px;
 }
 .photo-principal {
+     background: yellowgreen;
     display: flex;
     align-items: center;
     padding: 5px 15px;
@@ -92,7 +91,17 @@ button {
     color: white;
     text-align: center;
     padding: 6px;
-    font-size: 12px;
+    font-size: 22px;
+}
+.signature {
+    text-align: right;
+    margin-top: 0px;
+    background: pink;
+    margin-right: 1px;
+    font-family: "Brush Script MT", cursive;
+    font-size: 18px;
+    color: blue;
+    font-weight: bold;
 }
 
 #printBtn {
@@ -118,8 +127,11 @@ button {
   <label>School Name</label>
   <input type="text" id="schoolName" placeholder="Enter School Name" required>
 
-  <label>Principal Phone Number</label>
-  <input type="text" id="principalPhone" placeholder="Enter Principal's Phone Number" required></br>
+  <label>School Address</label>
+  <input type="text" id="schoolAddress" placeholder="Enter School Address" required>
+
+  <label>Principal Name</label>
+  <input type="text" id="principalName" placeholder="Enter Principal's Name" required></br>
 
   <label>Student Name</label>
   <input type="text" id="stuName" required>
@@ -154,7 +166,7 @@ button {
 <div id="idCard">
   <div class="header">
     <span id="cardSchool">SCHOOL NAME</span>
-    <div class="principal-corner">Principal: <span id="cardPrincipal"></span></div>
+    <div class="school-address" id="cardAddress"></div>
   </div>
 
   <div class="photo-principal">
@@ -172,9 +184,16 @@ button {
     <p><b>Valid Till:</b> <span id="cardExp"></span></p>
   </div>
 
+   <div class="signature">
+    <span id="cardPrincipal"></span><br>
+    <small>Principal</small>
+  </div>
+
   <div class="school-info">
     <p>Our school is committed to excellence in education and nurturing future leaders.</p>
   </div>
+
+ 
 
   <div class="footer">
     SCHOOL IDENTITY CARD
@@ -192,7 +211,8 @@ function formatDate(dateStr){
 
 function generateCard() {
   document.getElementById("cardSchool").innerText = document.getElementById("schoolName").value;
-  document.getElementById("cardPrincipal").innerText = document.getElementById("principalPhone").value;
+  document.getElementById("cardAddress").innerText = document.getElementById("schoolAddress").value;
+  document.getElementById("cardPrincipal").innerText = document.getElementById("principalName").value;
   document.getElementById("cardName").innerText = document.getElementById("stuName").value;
   document.getElementById("cardClass").innerText = document.getElementById("stuClass").value;
   document.getElementById("cardRoll").innerText = document.getElementById("stuRoll").value;
