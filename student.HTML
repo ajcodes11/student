@@ -24,7 +24,7 @@ form {
 label { font-weight: bold; display: block; margin-top: 10px; }
 input { width: 100%; padding: 8px; margin-top: 4px; border: 1px solid #ccc; border-radius: 5px; }
 button {
-    margin-top: 10px;
+    margin-top: 15px;
     padding: 10px;
     width: 100%;
     background: orange;
@@ -60,7 +60,8 @@ button {
     margin-top: 4px;
 }
 .photo-principal {
-     background: yellowgreen;
+    photo-align: center;
+     background: yellow;
     display: flex;
     align-items: center;
     padding: 5px 15px;
@@ -74,34 +75,41 @@ button {
 }
 .details {
     padding: 8px 15px;
-    font-size: 14px;
+    font-size: 15px;
     background: yellow;
     color: black;
 }
-.details p { margin: 4px 0; }
+.details p { margin: 10px 0; }
 .school-info {
     padding: 3px 15px;
     font-size: 12px;
-    color: white;
+    color: RED;
     font-style: italic;
-    background: red;
+    background: yellow;
 }
 .footer {
     background: orange;
     color: white;
     text-align: center;
     padding: 6px;
-    font-size: 22px;
+    font-size: 15px;
 }
-.signature {
+.signature { 
+    background: yellow;
     text-align: right;
     margin-top: 0px;
-    background: pink;
     margin-right: 1px;
     font-family: "Brush Script MT", cursive;
-    font-size: 18px;
+    font-size: 14px;
     color: blue;
     font-weight: bold;
+}
+.signature-phone {
+    background: yellow;
+    text-align: right;
+    margin-right: 1px;
+    font-size: 27px;
+    color: black;
 }
 
 #printBtn {
@@ -131,7 +139,10 @@ button {
   <input type="text" id="schoolAddress" placeholder="Enter School Address" required>
 
   <label>Principal Name</label>
-  <input type="text" id="principalName" placeholder="Enter Principal's Name" required></br>
+  <input type="text" id="principalName" placeholder="Enter Principal's Name" required>
+
+  <label>Principal Phone Number</label>
+  <input type="text" id="principalPhone" placeholder="Enter Principal's Phone Number" required>
 
   <label>Student Name</label>
   <input type="text" id="stuName" required>
@@ -183,7 +194,11 @@ button {
     <p><b>Contact:</b> <span id="cardContact"></span></p>
     <p><b>Valid Till:</b> <span id="cardExp"></span></p>
   </div>
-
+       
+   <div class="signature-phone">
+    <span id="cardPrincipalPhone"></span>
+  </div> 
+         
    <div class="signature">
     <span id="cardPrincipal"></span><br>
     <small>Principal</small>
@@ -193,6 +208,7 @@ button {
     <p>Our school is committed to excellence in education and nurturing future leaders.</p>
   </div>
 
+ 
  
 
   <div class="footer">
@@ -213,6 +229,7 @@ function generateCard() {
   document.getElementById("cardSchool").innerText = document.getElementById("schoolName").value;
   document.getElementById("cardAddress").innerText = document.getElementById("schoolAddress").value;
   document.getElementById("cardPrincipal").innerText = document.getElementById("principalName").value;
+  document.getElementById("cardPrincipalPhone").innerText = document.getElementById("principalPhone").value;
   document.getElementById("cardName").innerText = document.getElementById("stuName").value;
   document.getElementById("cardClass").innerText = document.getElementById("stuClass").value;
   document.getElementById("cardRoll").innerText = document.getElementById("stuRoll").value;
