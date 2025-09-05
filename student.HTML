@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>student</title>
+<title>Compact Student ID Card</title>
 <style>
 body {
     font-family: Arial, sans-serif;
@@ -54,6 +54,13 @@ button {
     font-size: 18px;
     position: relative;
 }
+.principal-corner {
+    display: block;
+    margin-top: 5px;
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+}
 .photo-principal {
     display: flex;
     align-items: center;
@@ -78,7 +85,7 @@ button {
     font-size: 12px;
     color: white;
     font-style: italic;
-    background: red; /* बैकग्राउंड रेड किया */
+    background: red;
 }
 .footer {
     background: orange;
@@ -86,16 +93,6 @@ button {
     text-align: center;
     padding: 6px;
     font-size: 12px;
-}
-
-/* Principal Phone को top-right corner में shift किया */
-.principal-corner {
-    position: absolute;
-    top: 8px;
-    right: 10px;
-    font-size: 12px;
-    font-weight: bold;
-    color: white;
 }
 
 #printBtn {
@@ -122,7 +119,7 @@ button {
   <input type="text" id="schoolName" placeholder="Enter School Name" required>
 
   <label>Principal Phone Number</label>
-  <input type="text" id="principalPhone" placeholder="Enter Principal's Phone Number" required>
+  <input type="text" id="principalPhone" placeholder="Enter Principal's Phone Number" required></br>
 
   <label>Student Name</label>
   <input type="text" id="stuName" required>
@@ -221,4 +218,3 @@ function generateCard() {
 
 </body>
 </html>
-
